@@ -332,11 +332,7 @@ def train_test_split(*data, test_size=None, train_size=None, val_size=None, val_
     data[n-1] = y_transform(y,data[n-1])
         
     if val_split == True:
-        new_size = train_size + val_size
-        n_trainval, n_test = data_split(n_samples, test_size, new_size, default_test_size=0.2)
-        
-        train_size = (train_size - val_size) / train_size
-        val_size = val_size / train_size
+        n_trainval, n_test = data_split(n_samples, test_size, train_size, default_test_size=0.2)
         n_train, n_val = data_split(n_trainval, val_size, train_size, default_test_size=0.125)
         
         train = np.arange(n_train)
