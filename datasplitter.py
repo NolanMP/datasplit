@@ -307,7 +307,7 @@ def y_transform(y,ytemp):
         return ytemp 
 
 
-def train_test_split(*data, test_size=None, train_size=None, val_size=None, val_split=None, shuffle=True, stratify=False, random_state=None):
+def train_test_split(*data, test_size=None, train_size=None, val_size=None, val_split=False, shuffle=True, stratify=False, random_state=None):
     n = len(data)
     if n == 0:
         raise ValueError("Array expected")
@@ -331,7 +331,7 @@ def train_test_split(*data, test_size=None, train_size=None, val_size=None, val_
      
     data[n-1] = y_transform(y,data[n-1])
         
-    if val_split==1:
+    if val_split == True:
         n_trainval, n_test = data_split(n_samples, test_size, train_size, default_test_size=0.2)
         n_train, n_val = data_split(n_trainval, val_size, train_size, default_test_size=0.125)
         
