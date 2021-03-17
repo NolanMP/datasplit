@@ -337,10 +337,9 @@ def train_test_split(*data, test_size=None, train_size=None, val_size=None, val_
             new_size = val_size + train_size
             n_trainval, n_test = data_split(n_samples, test_size, new_size, default_test_size=0.2)
             
-            newval_size = val_size/train_size
-            newtrain_size = (train_size - val_size)/train_size
+            newval_size = round(val_size/(train_size + val_size),4)
+            newtrain_size = round(train_size/(train_size + val_size),4)
             n_train, n_val = data_split(n_trainval, newval_size, newtrain_size, default_test_size=0.125)
-            
         else:
             n_trainval, n_test = data_split(n_samples, test_size, train_size, default_test_size=0.2)
             n_train, n_val = data_split(n_trainval, val_size, train_size, default_test_size=0.125)
